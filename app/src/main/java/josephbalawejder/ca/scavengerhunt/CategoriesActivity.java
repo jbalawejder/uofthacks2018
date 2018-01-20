@@ -1,27 +1,23 @@
 package josephbalawejder.ca.scavengerhunt;
 
-import android.app.Activity;
 import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * Created by jbala on 2018-01-20.
- */
-public class Categories extends Activity {
+public class CategoriesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.categories);
+        setContentView(R.layout.activity_categories);
 
         final ListView listview = (ListView) findViewById(R.id.listview);
         String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
@@ -34,7 +30,7 @@ public class Categories extends Activity {
         for (int i = 0; i < values.length; ++i) {
             list.add(values[i]);
         }
-        final StableArrayAdapter adapter = new StableArrayAdapter(this,
+        final CategoriesActivity.StableArrayAdapter adapter = new CategoriesActivity.StableArrayAdapter(this,
                 android.R.layout.simple_list_item_1, list);
         listview.setAdapter(adapter);
 
@@ -82,5 +78,4 @@ public class Categories extends Activity {
         }
 
     }
-
 }

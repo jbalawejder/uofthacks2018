@@ -26,11 +26,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Button button = findViewById(R.id.playButton);
-        button.setOnClickListener(new View.OnClickListener() {
+        final Button playButton = findViewById(R.id.playButton);
+        playButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
                 startActivity(new Intent(MainActivity.this, TakePicActivity.class));
+            }
+        });
+
+        final Button categoriesButton = findViewById(R.id.categoriesButton);
+        categoriesButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Code here executes on main thread after user presses button
+                startActivity(new Intent(MainActivity.this, CategoriesActivity.class));
             }
         });
     }
