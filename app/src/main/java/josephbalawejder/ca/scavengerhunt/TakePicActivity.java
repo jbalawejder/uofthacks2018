@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +24,9 @@ public class TakePicActivity extends AppCompatActivity {
     private VisualRecognition vrClient;
     private CameraHelper helper;
 
+    private String item;
+    private boolean itemCorrect;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +40,11 @@ public class TakePicActivity extends AppCompatActivity {
 
         // Initialize camera helper
         helper = new CameraHelper(this);
-        //helper.dispatchTakePictureIntent();
+        helper.dispatchTakePictureIntent();
+
+        //hardcode the item to find
+        item = "keyboard";
+        itemCorrect = false;
     }
 
     public void takePicture(View view) {
@@ -51,6 +59,20 @@ public class TakePicActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == CameraHelper.REQUEST_IMAGE_CAPTURE) {
+
+            //text box on the top of the screen
+            TextView itemFound = findViewById(R.id.header);
+            itemFound.setText("Processing Image ...");
+            itemFound.setTextColor(0xFF000000);
+
+            TextView detectedObjects = findViewById(R.id.detected_objects);
+            String msg = "Looking for " + item;
+            detectedObjects.setText(msg);
+
+            Button nextScreen = findViewById(R.id.next_screen);
+            nextScreen.setVisibility(View.INVISIBLE);
+
+
             final Bitmap photo = helper.getBitmap(resultCode);
             final File photoFile = helper.getFile(resultCode);
             ImageView preview = findViewById(R.id.preview);
@@ -72,20 +94,47 @@ public class TakePicActivity extends AppCompatActivity {
                     VisualClassifier classifier =
                             classification.getClassifiers().get(0);
 
+                    //get the list of objects from watson
                     final StringBuffer output = new StringBuffer();
                     for(VisualClassifier.VisualClass object: classifier.getClasses()) {
                         if(object.getScore() > 0.3f)
-                            output.append("<")
-                                    .append(object.getName())
-                                    .append("> ");
+                            output.append(object.getName())
+                                    .append(", ");
                     }
 
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            TextView detectedObjects =
-                                    findViewById(R.id.detected_objects);
-                            detectedObjects.setText(output);
+                            TextView detectedObjects = findViewById(R.id.detected_objects);
+                            String foundItems = "Watson found: " + output.toString();
+                            detectedObjects.setText(foundItems + Integer.toString(output.lastIndexOf(item)));
+
+                            if (output.lastIndexOf(item) == -1){
+                                itemCorrect = false;
+                            }else{
+                                itemCorrect = true;
+                            }
+
+                            //detectedObjects.setText(Integer.toString(a));
+
+                            //text box on the top of the screen
+                            TextView itemFound = findViewById(R.id.header);
+                            Button nextScreen = findViewById(R.id.next_screen);
+                            nextScreen.setVisibility(View.VISIBLE);
+                            
+                            if(itemCorrect){
+                                itemFound.setText("Correct!");
+                                itemFound.setTextColor(0xFF00FF00);
+
+                                nextScreen.setText("Find next item");
+                            }
+                            else{
+                                itemFound.setText("Incorrect");
+                                itemFound.setTextColor(0xFFFF0000);
+
+                                nextScreen.setText("Try again");
+                            }
+
                         }
                     });
                 }
