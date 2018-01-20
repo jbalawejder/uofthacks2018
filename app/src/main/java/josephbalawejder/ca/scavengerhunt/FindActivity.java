@@ -12,18 +12,24 @@ import java.util.Random;
 
 public class FindActivity extends AppCompatActivity {
 
+    public int randomNum;
+    public String category;
+    public ArrayList<String> categories;
+    public TextView findTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find);
 
-        ArrayList<String> categories = getIntent().getStringArrayListExtra("CATEGORY_LIST");
+        categories = getIntent().getStringArrayListExtra("CATEGORY_LIST");
         int size = categories.size();
 
         Random rand = new Random();
-        int randomNum = rand.nextInt(size + 1);
-        String category = categories.get(randomNum);
-        TextView findTextView = (TextView) findViewById(R.id.findTextView);
+        randomNum = rand.nextInt(size + 1);
+
+        category = categories.get(randomNum);
+        findTextView = (TextView) findViewById(R.id.findTextView);
         findTextView.setText("Find " + category);
 
         final Button takePicButton = findViewById(R.id.TakePicButton);
@@ -35,6 +41,13 @@ public class FindActivity extends AppCompatActivity {
         });
 
         final Button skipButton = findViewById(R.id.SkipButton);
+        skipButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Code here executes on main thread after user presses button
+                category = categories.get(randomNum+1);
+                findTextView.setText("Find " + category);
+            }
+        });
 
         final Button stopButton = findViewById(R.id.StopButton);
 //        stopButton.setOnClickListener(new View.OnClickListener() {

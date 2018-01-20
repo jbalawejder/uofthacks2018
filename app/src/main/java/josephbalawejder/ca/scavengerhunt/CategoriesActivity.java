@@ -63,8 +63,8 @@ public class CategoriesActivity extends AppCompatActivity {
                 System.out.println(category);
                 categoryList = map.get(category);
                 Intent newActivity = new Intent(CategoriesActivity.this, FindActivity.class);
-                    newActivity.putExtra("CATEGORY_LIST", categoryList);
-                    startActivity(newActivity);
+                newActivity.putExtra("CATEGORY_LIST", categoryList);
+                startActivity(newActivity);
             }
         });
     }
