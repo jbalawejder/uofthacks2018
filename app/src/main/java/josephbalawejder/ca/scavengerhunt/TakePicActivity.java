@@ -43,7 +43,7 @@ public class TakePicActivity extends AppCompatActivity {
         helper.dispatchTakePictureIntent();
 
         //hardcode the item to find
-        item = "keyboard";
+        item = "banana";
         itemCorrect = false;
     }
 
@@ -121,7 +121,7 @@ public class TakePicActivity extends AppCompatActivity {
                             TextView itemFound = findViewById(R.id.header);
                             Button nextScreen = findViewById(R.id.next_screen);
                             nextScreen.setVisibility(View.VISIBLE);
-                            
+
                             if(itemCorrect){
                                 itemFound.setText("Correct!");
                                 itemFound.setTextColor(0xFF00FF00);
@@ -140,6 +140,7 @@ public class TakePicActivity extends AppCompatActivity {
                 }
             });
         }
+
 
 
     }
