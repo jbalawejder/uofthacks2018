@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ScavengerHunt</string>
+    <string name="api_key">8d7aced8efa9ce11cca985d203dce5989cc20148</string>
 </resources>
