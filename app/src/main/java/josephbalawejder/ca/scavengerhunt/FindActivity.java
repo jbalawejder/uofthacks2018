@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class FindActivity extends AppCompatActivity {
 
@@ -12,6 +13,11 @@ public class FindActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find);
+
+        String category = getIntent().getStringExtra("CATEGORY");
+
+        TextView findTextView = (TextView) findViewById(R.id.findTextView);
+        findTextView.setText(category);
 
         final Button takePicButton = findViewById(R.id.TakePicButton);
         takePicButton.setOnClickListener(new View.OnClickListener() {
