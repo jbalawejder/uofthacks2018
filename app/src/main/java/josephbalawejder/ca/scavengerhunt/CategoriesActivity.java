@@ -29,15 +29,22 @@ public class CategoriesActivity extends AppCompatActivity {
         homeItems.add("Bottle");
         schoolItems.add("stuff");
         colourItems.add("stuff");
-        hackathonItems.add("stuff");
+
+        String[] hackathonValues = new String[] {"banana", "pop can", "Mouse",
+                "Bottle", "Keyboard", "cable", "Plate of food", "Bag of chips", "wallet", "shoes"};
+        for (int i = 0; i < hackathonValues.length; ++i) {
+            hackathonItems.add(hackathonValues[i]);
+        }
+
+
         //Create mapping
         map.put("Home", homeItems);
         map.put("Colours", colourItems);
         map.put("School", schoolItems);
-        map.put("hackathon",hackathonItems);
+        map.put("Hackathon",hackathonItems);
 
         final ListView listview = (ListView) findViewById(R.id.listview);
-        String[] values = new String[] { "Home", "Colours", "School", "hackathon"};
+        String[] values = new String[] { "Home", "Colours", "School", "Hackathon"};
 
         final ArrayList<String> list = new ArrayList<String>();
         for (int i = 0; i < values.length; ++i) {
@@ -53,6 +60,7 @@ public class CategoriesActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 String category = (String) listview.getItemAtPosition(position);
+                System.out.println(category);
                 categoryList = map.get(category);
                 Intent newActivity = new Intent(CategoriesActivity.this, FindActivity.class);
                     newActivity.putExtra("CATEGORY_LIST", categoryList);
