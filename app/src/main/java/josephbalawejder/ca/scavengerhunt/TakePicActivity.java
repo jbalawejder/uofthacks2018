@@ -32,19 +32,19 @@ public class TakePicActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_take_pic);
 
+        item = getIntent().getStringExtra("ITEM");
+
         // Initialize Visual Recognition client
         vrClient = new VisualRecognition(
                 VisualRecognition.VERSION_DATE_2016_05_20,
                 getString(R.string.api_key)
         );
 
+        itemCorrect = false;
+
         // Initialize camera helper
         helper = new CameraHelper(this);
         helper.dispatchTakePictureIntent();
-
-        //hardcode the item to find
-        item = "banana";
-        itemCorrect = false;
     }
 
     public void takePicture(View view) {

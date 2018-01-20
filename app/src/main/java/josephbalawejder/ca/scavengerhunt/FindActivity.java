@@ -13,7 +13,7 @@ import java.util.Random;
 public class FindActivity extends AppCompatActivity {
 
     public int randomNum;
-    public String category;
+    public String item;
     public ArrayList<String> categories;
     public TextView findTextView;
 
@@ -28,15 +28,17 @@ public class FindActivity extends AppCompatActivity {
         Random rand = new Random();
         randomNum = rand.nextInt(size + 1);
 
-        category = categories.get(randomNum);
+        item = categories.get(randomNum);
         findTextView = (TextView) findViewById(R.id.findTextView);
-        findTextView.setText("Find " + category);
+        findTextView.setText("Find " + item);
 
         final Button takePicButton = findViewById(R.id.TakePicButton);
         takePicButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-                startActivity(new Intent(FindActivity.this, TakePicActivity.class));
+                Intent takePicture = new Intent(FindActivity.this, TakePicActivity.class);
+                takePicture.putExtra("ITEM", item);
+                startActivity(takePicture);
             }
         });
 
@@ -44,8 +46,8 @@ public class FindActivity extends AppCompatActivity {
         skipButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-                category = categories.get(randomNum+1);
-                findTextView.setText("Find " + category);
+                item = categories.get(randomNum+1);
+                findTextView.setText("Find " + item);
             }
         });
 
