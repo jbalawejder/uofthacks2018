@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,6 +36,11 @@ public class TakePicActivity extends AppCompatActivity {
 
         // Initialize camera helper
         helper = new CameraHelper(this);
+        //helper.dispatchTakePictureIntent();
+    }
+
+    public void takePicture(View view) {
+        // More code here
         helper.dispatchTakePictureIntent();
     }
 
@@ -68,7 +74,7 @@ public class TakePicActivity extends AppCompatActivity {
 
                     final StringBuffer output = new StringBuffer();
                     for(VisualClassifier.VisualClass object: classifier.getClasses()) {
-                        if(object.getScore() > 0.7f)
+                        if(object.getScore() > 0.3f)
                             output.append("<")
                                     .append(object.getName())
                                     .append("> ");
