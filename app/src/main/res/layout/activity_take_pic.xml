@@ -17,7 +17,10 @@ tools:context="josephbalawejder.ca.scavengerhunt.MainActivity">
     android:layout_alignParentBottom="true"
     android:text="Go to next item/try again"
     android:visibility="invisible"
-    android:onClick="takePicture"/>
+    android:onClick="takePicture"
+    android:background="#3F51B5"
+    android:textColor="@android:color/white"
+    android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/header"
@@ -26,7 +29,8 @@ tools:context="josephbalawejder.ca.scavengerhunt.MainActivity">
         android:layout_alignParentTop="true"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        tools:text="header" />
+        tools:text="header"
+        android:textColor="#3F51B5"/>
 
     <ImageView
         android:id="@+id/preview"
@@ -45,5 +49,6 @@ tools:context="josephbalawejder.ca.scavengerhunt.MainActivity">
         android:layout_marginTop="20dp"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        tools:text="detected_objects" />
+        tools:text="detected_objects"
+        android:textColor="#3F51B5"/>
 </RelativeLayout>
