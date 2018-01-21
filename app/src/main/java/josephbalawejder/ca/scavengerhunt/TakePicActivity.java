@@ -85,6 +85,7 @@ public class TakePicActivity extends AppCompatActivity {
         findActivity.putExtra("TIME", time_remaining);
         findActivity.putExtra("SCORE", score);
         startActivity(findActivity);
+        finish();
 //        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_from_left);
     }
 

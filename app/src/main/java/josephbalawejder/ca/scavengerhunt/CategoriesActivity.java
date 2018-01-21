@@ -88,6 +88,7 @@ public class CategoriesActivity extends AppCompatActivity {
                 newActivity.putExtra("TIME", total_time);
                 newActivity.putExtra("SCORE", score);
                 startActivity(newActivity);
+                finish();
 //                overridePendingTransition(R.anim.enter_from_right, R.anim.exit_from_left);
             }
         });

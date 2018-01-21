@@ -20,6 +20,7 @@ public class FindActivity extends AppCompatActivity {
     public TextView findTextView;
     public int score;
     public long time_remaining;
+    public CountDownTimer newtimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +47,15 @@ public class FindActivity extends AppCompatActivity {
         final Button takePicButton = findViewById(R.id.TakePicButton);
         takePicButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                //stop the timer
+                newtimer.cancel();
                 // Code here executes on main thread after user presses button
                 Intent takePicture = new Intent(FindActivity.this, TakePicActivity.class);
                 takePicture.putExtra("ITEMS", items);
                 takePicture.putExtra("TIME", time_remaining);
                 takePicture.putExtra("SCORE", score);
                 startActivity(takePicture);
+                finish();
 //                overridePendingTransition(R.anim.enter_from_right, R.anim.exit_from_left);
             }
         });
@@ -79,7 +83,7 @@ public class FindActivity extends AppCompatActivity {
 
 
 
-        CountDownTimer newtimer = new CountDownTimer(time_remaining, 1000) {
+        newtimer = new CountDownTimer(time_remaining, 1000) {
 
             TextView time_text = findViewById(R.id.timeRemaining);
 
@@ -96,5 +100,8 @@ public class FindActivity extends AppCompatActivity {
             }
         };
         newtimer.start();
+
+        TextView score_board = findViewById(R.id.score);
+        score_board.setText("Score: " + score);
     }
 }
