@@ -30,8 +30,8 @@ public class CategoriesActivity extends AppCompatActivity {
         schoolItems.add("stuff");
         colourItems.add("stuff");
 
-        String[] hackathonValues = new String[] {"banana", "pop can", "Mouse",
-                "Bottle", "Keyboard", "cable", "Plate of food", "Bag of chips", "wallet", "shoes"};
+        String[] hackathonValues = new String[] {"banana", "pop can", "mouse",
+                "Bottle", "Keyboard", "cable", "plate of food", "bag of chips", "wallet", "shoes"};
         for (int i = 0; i < hackathonValues.length; ++i) {
             hackathonItems.add(hackathonValues[i]);
         }
@@ -63,7 +63,7 @@ public class CategoriesActivity extends AppCompatActivity {
                 System.out.println(category);
                 categoryList = map.get(category);
                 Intent newActivity = new Intent(CategoriesActivity.this, FindActivity.class);
-                newActivity.putExtra("CATEGORY_LIST", categoryList);
+                newActivity.putExtra("ITEMS", categoryList);
                 startActivity(newActivity);
             }
         });
@@ -91,6 +91,14 @@ public class CategoriesActivity extends AppCompatActivity {
         public boolean hasStableIds() {
             return true;
         }
+
+//        @Override
+//        public static shuffle_array(ArrayList<String> s){
+//            Random rand = new Random();
+//            randomNum = rand.nextInt();
+//
+//
+//        }
 
     }
 }

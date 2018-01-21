@@ -18,6 +18,8 @@ import com.ibm.watson.developer_cloud.visual_recognition.v3.model.VisualClassifi
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.VisualClassifier;
 
 import java.io.File;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class TakePicActivity extends AppCompatActivity {
 
@@ -25,6 +27,9 @@ public class TakePicActivity extends AppCompatActivity {
     private CameraHelper helper;
 
     private String item;
+    private String correct = "Correct!";
+    private String incorrect = "Incorrect :(";
+    private ArrayList<String> items;
     private boolean itemCorrect;
 
     @Override
@@ -32,7 +37,8 @@ public class TakePicActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_take_pic);
 
-        item = getIntent().getStringExtra("ITEM");
+        items = getIntent().getStringArrayListExtra("ITEMS");
+        item = items.get(0);
 
         // Initialize Visual Recognition client
         vrClient = new VisualRecognition(
@@ -48,8 +54,16 @@ public class TakePicActivity extends AppCompatActivity {
     }
 
     public void takePicture(View view) {
-        // More code here
-        helper.dispatchTakePictureIntent();
+        TextView itemFound = findViewById(R.id.header);
+
+        if(itemFound.getText() == correct){
+            items.remove(0);
+        }
+
+        //call findActivity with the items
+        Intent findActivity = new Intent(TakePicActivity.this, FindActivity.class);
+        findActivity.putExtra("ITEMS", items);
+        startActivity(findActivity);
     }
 
     @Override
@@ -123,13 +137,13 @@ public class TakePicActivity extends AppCompatActivity {
                             nextScreen.setVisibility(View.VISIBLE);
 
                             if(itemCorrect){
-                                itemFound.setText("Correct!");
+                                itemFound.setText(correct);
                                 itemFound.setTextColor(0xFF00FF00);
 
                                 nextScreen.setText("Find next item");
                             }
                             else{
-                                itemFound.setText("Incorrect");
+                                itemFound.setText(incorrect);
                                 itemFound.setTextColor(0xFFFF0000);
 
                                 nextScreen.setText("Try again");

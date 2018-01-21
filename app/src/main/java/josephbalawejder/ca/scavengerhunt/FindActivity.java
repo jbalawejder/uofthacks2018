@@ -14,7 +14,7 @@ public class FindActivity extends AppCompatActivity {
 
     public int randomNum;
     public String item;
-    public ArrayList<String> categories;
+    public ArrayList<String> items;
     public TextView findTextView;
 
     @Override
@@ -22,13 +22,17 @@ public class FindActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find);
 
-        categories = getIntent().getStringArrayListExtra("CATEGORY_LIST");
-        int size = categories.size();
+        items = getIntent().getStringArrayListExtra("ITEMS");
 
-        Random rand = new Random();
-        randomNum = rand.nextInt(size + 1);
+//        int size = categories.size();
 
-        item = categories.get(randomNum);
+//        Random rand = new Random();
+//        randomNum = rand.nextInt(size + 1);
+
+        if (items.size() != 0){
+            item = items.get(0);
+        }
+
         findTextView = (TextView) findViewById(R.id.findTextView);
         findTextView.setText("Find " + item);
 
@@ -37,7 +41,7 @@ public class FindActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
                 Intent takePicture = new Intent(FindActivity.this, TakePicActivity.class);
-                takePicture.putExtra("ITEM", item);
+                takePicture.putExtra("ITEMS", items);
                 startActivity(takePicture);
             }
         });
@@ -46,7 +50,10 @@ public class FindActivity extends AppCompatActivity {
         skipButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-                item = categories.get(randomNum+1);
+                item = items.get(0);
+                items.remove(0);
+                items.add(items.size(), item);
+                item = items.get(0);
                 findTextView.setText("Find " + item);
             }
         });
