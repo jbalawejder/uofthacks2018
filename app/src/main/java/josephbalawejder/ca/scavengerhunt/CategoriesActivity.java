@@ -30,7 +30,7 @@ public class CategoriesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_categories);
 
         String[] hackathonValues = new String[] {"banana", "can", "mouse",
-                "bottle", "keyboard", "cable", "food", "bag of chips", "wallet",
+                "bottle", "keyboard", "cable", "food", "chips", "wallet",
                 "shoes", "watch", "keys"};
 
         for (int i = 0; i < hackathonValues.length; ++i) {
