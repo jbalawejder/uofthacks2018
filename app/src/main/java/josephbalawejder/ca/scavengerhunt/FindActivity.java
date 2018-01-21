@@ -60,11 +60,11 @@ public class FindActivity extends AppCompatActivity {
         });
 
         final Button stopButton = findViewById(R.id.StopButton);
-//        stopButton.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                // Code here executes on main thread after user presses button
-//                startActivity(new Intent(FindActivity.this, stopActivity.class));
-//            }
-//        });
+        stopButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Code here executes on main thread after user presses button
+                startActivity(new Intent(FindActivity.this, MainActivity.class));
+            }
+        });
     }
 }
