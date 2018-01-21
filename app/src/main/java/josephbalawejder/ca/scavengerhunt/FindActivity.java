@@ -18,9 +18,13 @@ public class FindActivity extends AppCompatActivity {
     public String item;
     public ArrayList<String> items;
     public TextView findTextView;
+    public TextView score_board;
+    public TextView find_view;
+
     public int score;
     public long time_remaining;
     public CountDownTimer newtimer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +45,8 @@ public class FindActivity extends AppCompatActivity {
             item = items.get(0);
         }
 
-        findTextView = (TextView) findViewById(R.id.findTextView);
+        find_view = findViewById(R.id.findView);
+        findTextView = findViewById(R.id.findTextView);
         findTextView.setText(item);
 
         final Button takePicButton = findViewById(R.id.TakePicButton);
@@ -95,13 +100,22 @@ public class FindActivity extends AppCompatActivity {
                 skipButton.setEnabled(false);
                 takePicButton.setEnabled(false);
 
+                //set the timer to times up and hide the score
                 time_text.setText("Time Up!");
+                score_board.setText(" ");
+
+                //Set the big find text in the middle to the final score of the game
+
+                find_view.setText("Final Score");
+                findTextView.setText("" + score);
+
+                stopButton.setText("New Game");
 
             }
         };
         newtimer.start();
 
-        TextView score_board = findViewById(R.id.score);
+        score_board = findViewById(R.id.score);
         score_board.setText("Score: " + score);
     }
 }

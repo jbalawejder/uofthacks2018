@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
                 startActivity(new Intent(MainActivity.this, CategoriesActivity.class));
-                
+
 //                overridePendingTransition(R.anim.enter_from_right, R.anim.exit_from_left);
             }
         });
