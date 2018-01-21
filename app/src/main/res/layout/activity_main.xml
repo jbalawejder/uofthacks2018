@@ -19,4 +19,23 @@
         android:layout_marginBottom="180dp"
         app:layout_constraintLeft_toLeftOf="parent" />
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ScavaHunt"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="133dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
+
+        android:layout_centerHorizontal="true"
+
+        android:textColor="#3F51B5"
+        android:textSize="50sp"/>
+
 </android.support.constraint.ConstraintLayout>

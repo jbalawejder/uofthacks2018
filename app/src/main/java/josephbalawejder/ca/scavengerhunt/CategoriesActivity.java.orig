@@ -21,9 +21,6 @@ public class CategoriesActivity extends AppCompatActivity {
     public ArrayList<String> categoryList = new ArrayList<String>();
     public HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
 
-    public int total_time = 60000;//milliseconds
-    public int score = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +30,12 @@ public class CategoriesActivity extends AppCompatActivity {
                 "bottle", "keyboard", "cable", "food", "bag of chips", "wallet",
                 "shoes", "watch", "keys"};
 
+<<<<<<< HEAD
+        String[] homeValues = new String[] {"shoe", "umbrella", "coat", "keys", "apple", "bottle",
+                "bed", "tv", "dish", "fork", "sweater", "lamp", "bag"};
+
+=======
+>>>>>>> cc6b6f4f98b2e9ef01de2cfc91683e75182e438f
         for (int i = 0; i < hackathonValues.length; ++i) {
             hackathonItems.add(hackathonValues[i]);
         }

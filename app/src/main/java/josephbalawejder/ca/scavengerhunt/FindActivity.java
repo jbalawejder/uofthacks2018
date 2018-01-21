@@ -35,7 +35,7 @@ public class FindActivity extends AppCompatActivity {
         }
 
         findTextView = (TextView) findViewById(R.id.findTextView);
-        findTextView.setText("Find " + item);
+        findTextView.setText(item);
 
         final Button takePicButton = findViewById(R.id.TakePicButton);
         takePicButton.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +44,7 @@ public class FindActivity extends AppCompatActivity {
                 Intent takePicture = new Intent(FindActivity.this, TakePicActivity.class);
                 takePicture.putExtra("ITEMS", items);
                 startActivity(takePicture);
-                overridePendingTransition(R.anim.enter_from_right, R.anim.exit_from_left);
+//                overridePendingTransition(R.anim.enter_from_right, R.anim.exit_from_left);
             }
         });
 
@@ -56,7 +56,7 @@ public class FindActivity extends AppCompatActivity {
                 items.remove(0);
                 items.add(items.size(), item);
                 item = items.get(0);
-                findTextView.setText("Find " + item);
+                findTextView.setText(item);
             }
         });
 
