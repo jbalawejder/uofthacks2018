@@ -30,8 +30,8 @@ public class CategoriesActivity extends AppCompatActivity {
         schoolItems.add("stuff");
         colourItems.add("stuff");
 
-        String[] hackathonValues = new String[] {"banana", "pop can", "mouse",
-                "Bottle", "Keyboard", "cable", "plate of food", "bag of chips", "wallet", "shoes"};
+        String[] hackathonValues = new String[] {"banana", "can", "mouse",
+                "bottle", "keyboard", "cable", "food", "bag of chips", "wallet", "shoes"};
         for (int i = 0; i < hackathonValues.length; ++i) {
             hackathonItems.add(hackathonValues[i]);
         }
