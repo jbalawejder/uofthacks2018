@@ -146,7 +146,7 @@ public class TakePicActivity extends AppCompatActivity {
                         public void run() {
                             TextView detectedObjects = findViewById(R.id.detected_objects);
                             String foundItems = "Watson found: " + output.toString();
-                            detectedObjects.setText(foundItems + Integer.toString(output.lastIndexOf(item)));
+                            detectedObjects.setText(foundItems);
 
                             if (output.lastIndexOf(item) == -1){
                                 itemCorrect = false;
