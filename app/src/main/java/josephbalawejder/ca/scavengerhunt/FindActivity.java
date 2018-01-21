@@ -82,6 +82,7 @@ public class FindActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
                 startActivity(new Intent(FindActivity.this, MainActivity.class));
+                finish();
             }
         });
 
