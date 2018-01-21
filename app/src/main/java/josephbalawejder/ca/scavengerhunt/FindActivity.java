@@ -98,8 +98,8 @@ public class FindActivity extends AppCompatActivity {
                 time_remaining = millisUntilFinished;
             }
             public void onFinish() {
-                skipButton.setEnabled(false);
-                takePicButton.setEnabled(false);
+                skipButton.setVisibility(View.INVISIBLE);
+                takePicButton.setVisibility(View.INVISIBLE);
 
                 //set the timer to times up and hide the score
                 time_text.setText("Time Up!");
