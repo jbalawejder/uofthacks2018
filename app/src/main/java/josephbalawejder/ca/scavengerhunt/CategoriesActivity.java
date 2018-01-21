@@ -21,7 +21,7 @@ public class CategoriesActivity extends AppCompatActivity {
     public ArrayList<String> categoryList = new ArrayList<String>();
     public HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
 
-    public long total_time = 10000;//milliseconds
+    public long total_time = 60000;//milliseconds
     public int score = 0; //initial score value
 
     @Override
