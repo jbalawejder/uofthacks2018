@@ -83,6 +83,8 @@ public class CategoriesActivity extends AppCompatActivity {
                 String category = (String) listview.getItemAtPosition(position);
                 System.out.println(category);
                 categoryList = map.get(category);
+                //Find a way to shuffle the list
+                shuffleArray(categoryList);
                 Intent newActivity = new Intent(CategoriesActivity.this, FindActivity.class);
                 newActivity.putExtra("ITEMS", categoryList);
                 newActivity.putExtra("TIME", total_time);
@@ -90,6 +92,22 @@ public class CategoriesActivity extends AppCompatActivity {
                 startActivity(newActivity);
                 finish();
 //                overridePendingTransition(R.anim.enter_from_right, R.anim.exit_from_left);
+            }
+
+            public void shuffleArray(List<String> a) {
+                int n = a.size();
+                Random random = new Random();
+                random.nextInt();
+                for (int i = 0; i < n; i++) {
+                    int change = i + random.nextInt(n - i);
+                    swap(a, i, change);
+                }
+            }
+
+            private void swap(List<String> a, int i, int change) {
+                String helper = a.get(i);
+                a.add(i,a.get(change));
+                a.add(change, helper);
             }
         });
     }
@@ -116,14 +134,6 @@ public class CategoriesActivity extends AppCompatActivity {
         public boolean hasStableIds() {
             return true;
         }
-
-//        @Override
-//        public static shuffle_array(ArrayList<String> s){
-//            Random rand = new Random();
-//            randomNum = rand.nextInt();
-//
-//
-//        }
 
     }
 }
