@@ -21,8 +21,8 @@ public class CategoriesActivity extends AppCompatActivity {
     public ArrayList<String> categoryList = new ArrayList<String>();
     public HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
 
-    public int total_time = 60000;//milliseconds
-    public int score = 0;
+    public long total_time = 60000;//milliseconds
+    public int score = 0; //initial score value
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class CategoriesActivity extends AppCompatActivity {
         }
 
         String[] colourValues = new String[] {"blue", "yellow", "red", "green", "purple", "orange",
-                "black", "white", "grey", "pink", "brown", "gold", "silver"};
+                "black", "white", "gray", "pink", "brown", "gold", "silver"};
 
         for (int i = 0; i < colourValues.length; ++i) {
             colourItems.add(colourValues[i]);
@@ -85,6 +85,8 @@ public class CategoriesActivity extends AppCompatActivity {
                 categoryList = map.get(category);
                 Intent newActivity = new Intent(CategoriesActivity.this, FindActivity.class);
                 newActivity.putExtra("ITEMS", categoryList);
+                newActivity.putExtra("TIME", total_time);
+                newActivity.putExtra("SCORE", score);
                 startActivity(newActivity);
 //                overridePendingTransition(R.anim.enter_from_right, R.anim.exit_from_left);
             }

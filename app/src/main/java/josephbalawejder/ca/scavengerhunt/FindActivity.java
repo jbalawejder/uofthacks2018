@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.awt.font.TextAttribute;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -17,6 +18,8 @@ public class FindActivity extends AppCompatActivity {
     public String item;
     public ArrayList<String> items;
     public TextView findTextView;
+    public int score;
+    public long time_remaining;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,9 @@ public class FindActivity extends AppCompatActivity {
         setContentView(R.layout.activity_find);
 
         items = getIntent().getStringArrayListExtra("ITEMS");
+
+        score = getIntent().getExtras().getInt("SCORE", 0);
+        time_remaining = getIntent().getExtras().getLong("TIME");
 
 //        int size = categories.size();
 
@@ -43,6 +49,8 @@ public class FindActivity extends AppCompatActivity {
                 // Code here executes on main thread after user presses button
                 Intent takePicture = new Intent(FindActivity.this, TakePicActivity.class);
                 takePicture.putExtra("ITEMS", items);
+                takePicture.putExtra("TIME", time_remaining);
+                takePicture.putExtra("SCORE", score);
                 startActivity(takePicture);
 //                overridePendingTransition(R.anim.enter_from_right, R.anim.exit_from_left);
             }
@@ -69,13 +77,21 @@ public class FindActivity extends AppCompatActivity {
         });
 
 
-        CountDownTimer newtimer = new CountDownTimer(30000, 1000) {
+
+
+        CountDownTimer newtimer = new CountDownTimer(time_remaining, 1000) {
+
+            TextView time_text = findViewById(R.id.timeRemaining);
 
             public void onTick(long millisUntilFinished) {
-                TextView time_remaining = findViewById(R.id.timeRemaining);
-                time_remaining.setText("Time Remaining: " + millisUntilFinished/1000);
+                time_text.setText("Time Remaining: " + millisUntilFinished/1000);
+                time_remaining = millisUntilFinished;
             }
             public void onFinish() {
+                skipButton.setEnabled(false);
+                takePicButton.setEnabled(false);
+
+                time_text.setText("Time Up!");
 
             }
         };

@@ -3,6 +3,7 @@ package josephbalawejder.ca.scavengerhunt;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -31,6 +32,10 @@ public class TakePicActivity extends AppCompatActivity {
     private String incorrect = "Incorrect :(";
     private ArrayList<String> items;
     private boolean itemCorrect;
+    public long time_remaining;
+    public int score;
+
+    public CountDownTimer newtimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,19 @@ public class TakePicActivity extends AppCompatActivity {
 
         items = getIntent().getStringArrayListExtra("ITEMS");
         item = items.get(0).toLowerCase();
+
+        time_remaining = getIntent().getExtras().getLong("TIME");
+        score = getIntent().getExtras().getInt("SCORE");
+
+        //start the timer
+        newtimer = new CountDownTimer(time_remaining, 1000){
+            public void onTick(long millisUntilFinished) {
+                time_remaining = millisUntilFinished;
+            }
+            public void onFinish() {}
+        };
+        newtimer.start();
+
 
         // Initialize Visual Recognition client
         vrClient = new VisualRecognition(
@@ -58,11 +76,14 @@ public class TakePicActivity extends AppCompatActivity {
 
         if(itemFound.getText() == correct){
             items.remove(0);
+            score++;
         }
 
         //call findActivity with the items
         Intent findActivity = new Intent(TakePicActivity.this, FindActivity.class);
         findActivity.putExtra("ITEMS", items);
+        findActivity.putExtra("TIME", time_remaining);
+        findActivity.putExtra("SCORE", score);
         startActivity(findActivity);
 //        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_from_left);
     }
@@ -74,6 +95,8 @@ public class TakePicActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == CameraHelper.REQUEST_IMAGE_CAPTURE) {
+
+            newtimer.cancel();
 
             //text box on the top of the screen
             TextView itemFound = findViewById(R.id.header);
