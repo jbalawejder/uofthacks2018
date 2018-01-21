@@ -36,7 +36,7 @@ public class CategoriesActivity extends AppCompatActivity {
 
         String[] homeValues = new String[] {"shoe", "umbrella", "coat", "keys", "apple", "bottle",
                 "bed", "tv", "dish", "fork", "sweater", "lamp", "bag"};
-        
+
         for (int i = 0; i < hackathonValues.length; ++i) {
             hackathonItems.add(hackathonValues[i]);
         }

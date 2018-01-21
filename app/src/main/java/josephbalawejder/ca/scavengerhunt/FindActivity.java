@@ -1,6 +1,7 @@
 package josephbalawejder.ca.scavengerhunt;
 
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -66,5 +67,18 @@ public class FindActivity extends AppCompatActivity {
                 startActivity(new Intent(FindActivity.this, MainActivity.class));
             }
         });
+
+
+        CountDownTimer newtimer = new CountDownTimer(30000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                TextView time_remaining = findViewById(R.id.timeRemaining);
+                time_remaining.setText("Time Remaining: " + millisUntilFinished/1000);
+            }
+            public void onFinish() {
+
+            }
+        };
+        newtimer.start();
     }
 }
