@@ -38,7 +38,7 @@ public class TakePicActivity extends AppCompatActivity {
         setContentView(R.layout.activity_take_pic);
 
         items = getIntent().getStringArrayListExtra("ITEMS");
-        item = items.get(0);
+        item = items.get(0).toLowerCase();
 
         // Initialize Visual Recognition client
         vrClient = new VisualRecognition(
