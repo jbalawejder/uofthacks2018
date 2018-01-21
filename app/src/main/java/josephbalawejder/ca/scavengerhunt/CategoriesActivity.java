@@ -84,7 +84,7 @@ public class CategoriesActivity extends AppCompatActivity {
                 System.out.println(category);
                 categoryList = map.get(category);
                 //Find a way to shuffle the list
-                shuffleArray(categoryList);
+               // shuffleArray(categoryList);
                 Intent newActivity = new Intent(CategoriesActivity.this, FindActivity.class);
                 newActivity.putExtra("ITEMS", categoryList);
                 newActivity.putExtra("TIME", total_time);
@@ -94,7 +94,7 @@ public class CategoriesActivity extends AppCompatActivity {
 //                overridePendingTransition(R.anim.enter_from_right, R.anim.exit_from_left);
             }
 
-            public void shuffleArray(List<String> a) {
+            public void shuffleArray(ArrayList<String> a) {
                 int n = a.size();
                 Random random = new Random();
                 random.nextInt();
@@ -104,7 +104,7 @@ public class CategoriesActivity extends AppCompatActivity {
                 }
             }
 
-            private void swap(List<String> a, int i, int change) {
+            private void swap(ArrayList<String> a, int i, int change) {
                 String helper = a.get(i);
                 a.add(i,a.get(change));
                 a.add(change, helper);
