@@ -43,6 +43,7 @@ public class FindActivity extends AppCompatActivity {
                 Intent takePicture = new Intent(FindActivity.this, TakePicActivity.class);
                 takePicture.putExtra("ITEMS", items);
                 startActivity(takePicture);
+                overridePendingTransition(R.anim.enter_from_right, R.anim.exit_from_left);
             }
         });
 

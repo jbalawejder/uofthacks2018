@@ -65,6 +65,7 @@ public class CategoriesActivity extends AppCompatActivity {
                 Intent newActivity = new Intent(CategoriesActivity.this, FindActivity.class);
                 newActivity.putExtra("ITEMS", categoryList);
                 startActivity(newActivity);
+                overridePendingTransition(R.anim.enter_from_right, R.anim.exit_from_left);
             }
         });
     }
