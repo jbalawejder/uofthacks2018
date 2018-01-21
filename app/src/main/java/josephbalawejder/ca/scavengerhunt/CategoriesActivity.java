@@ -26,21 +26,34 @@ public class CategoriesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
 
-        homeItems.add("Bottle");
-        schoolItems.add("stuff");
-        colourItems.add("stuff");
-
         String[] hackathonValues = new String[] {"banana", "can", "mouse",
                 "bottle", "keyboard", "cable", "food", "bag of chips", "wallet",
                 "shoes", "watch", "keys"};
 
-        String[] homeValues = new String[] {"shoe", "umbrella", "coat", "keys", "apple", "bottle",
-                "bed", "tv", "dish", "fork", "sweater", "lamp", "bag"};
-        
         for (int i = 0; i < hackathonValues.length; ++i) {
             hackathonItems.add(hackathonValues[i]);
         }
 
+        String[] homeValues = new String[] {"shoe", "umbrella", "coat", "keys", "apple", "bottle",
+                "bed", "tv", "dish", "fork", "sweater", "lamp", "bag"};
+
+        for (int i = 0; i < homeValues.length; ++i) {
+            homeItems.add(homeValues[i]);
+        }
+
+        String[] colourValues = new String[] {"blue", "yellow", "red", "green", "purple", "orange",
+                "black", "white", "grey", "pink", "brown", "gold", "silver"};
+
+        for (int i = 0; i < colourValues.length; ++i) {
+            colourItems.add(colourValues[i]);
+        }
+
+        String[] schoolValues = new String[] {"pen", "apple", "computer", "board", "chair", "table",
+                "bottle", "paper", "calculator", "highlighter", "ruler", "pencil", "scissors"};
+
+        for (int i = 0; i < schoolValues.length; ++i) {
+            schoolItems.add(schoolValues[i]);
+        }
 
         //Create mapping
         map.put("Home", homeItems);
